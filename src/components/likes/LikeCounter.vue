@@ -8,6 +8,7 @@
 </template>
 
 <script setup lang="ts">
+import { actions } from "astro:actions";
 import { ref, watch } from "vue";
 import debounce from "lodash.debounce";
 
@@ -23,30 +24,27 @@ const isLoading = ref(true);
 
 watch(
   likeCount,
-  debounce(() => {
-    fetch(`/api/posts/likes/${props.postId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ likes: likeClicks.value }),
+  debounce(async () => {
+    await actions.updatePostLikes({
+      postId: props.postId,
+      increment: likeClicks.value,
     });
     likeClicks.value = 0;
   }, 500)
 );
 
-const likePost = () => {
+const likePost = async () => {
   likeCount.value++;
   likeClicks.value++;
 };
 
 const getCurrentLikes = async () => {
-  const resp = await fetch(`/api/posts/likes/${props.postId}`);
-  if (!resp.ok) {
-    console.error("Error fetching likes");
+  const { data, error } = await actions.getPostLikes(props.postId);
+  if (error) {
+    console.error("Error fetching likes", error);
     return;
   }
-  const data = await resp.json();
+
   likeCount.value = data.likes;
   isLoading.value = false;
 };
