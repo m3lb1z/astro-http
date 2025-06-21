@@ -1,3 +1,4 @@
+import prisma from "@/db";
 import { db, Posts, eq } from "astro:db";
 
 export async function getPostById(postId: string) {
@@ -6,14 +7,18 @@ export async function getPostById(postId: string) {
 }
 
 export async function getPostIdLikes(postId: string) {
-  const post = await getPostById(postId);
+  const post = await prisma.post.findFirst({
+    where: {
+      id: postId,
+    },
+  });
 
   if (!post) {
     return { likes: 0, exists: false };
   }
 
   return {
-    likes: post.likes,
+    likes: post.likes || 0,
     exists: true,
   };
 }

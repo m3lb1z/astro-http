@@ -1,7 +1,7 @@
-import { actions, defineAction } from "astro:actions";
+import { defineAction } from "astro:actions";
 import { z } from "astro:content";
-import { db, Posts, eq } from "astro:db";
 import { getPostIdLikes } from "../helpers";
+import prisma from "@/db";
 
 export const updatePostLikes = defineAction({
   input: z.object({
@@ -18,16 +18,20 @@ export const updatePostLikes = defineAction({
         likes: increment,
       };
 
-      await db.insert(Posts).values(newPost);
+      await prisma.post.create({
+        data: newPost,
+      });
       return true;
     }
 
-    await db
-      .update(Posts)
-      .set({
+    await prisma.post.update({
+      where: {
+        id: postId,
+      },
+      data: {
         likes: likes + increment,
-      })
-      .where(eq(Posts.id, postId));
+      },
+    });
 
     return true;
   },
