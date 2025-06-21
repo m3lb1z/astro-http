@@ -25,7 +25,7 @@ const isLoading = ref(true);
 watch(
   likeCount,
   debounce(async () => {
-    await actions.updatePostLikes({
+    await actions.updateLikeCount({
       postId: props.postId,
       increment: likeClicks.value,
     });

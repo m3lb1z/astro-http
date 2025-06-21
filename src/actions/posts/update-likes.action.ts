@@ -3,7 +3,7 @@ import { z } from "astro:content";
 import { getPostIdLikes } from "../helpers";
 import prisma from "@/db";
 
-export const updatePostLikes = defineAction({
+export const updateLikeCount = defineAction({
   input: z.object({
     postId: z.string(),
     increment: z.number(),
