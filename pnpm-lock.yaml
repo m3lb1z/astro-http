@@ -38,6 +38,10 @@ importers:
       vue:
         specifier: ^3.5.14
         version: 3.5.14(typescript@5.8.3)
+    devDependencies:
+      '@types/lodash.debounce':
+        specifier: ^4.0.9
+        version: 4.0.9
 
 packages:
 
@@ -800,6 +804,12 @@ packages:
 
   '@types/hast@3.0.4':
     resolution: {integrity: sha512-WPs+bbQw5aCj+x6laNGWLH3wviHtoCv/P3+otBhbOhJgG8qtpdAMlTCxLtsTWA7LH1Oh/bFCHsBn0TPS5m30EQ==}
+
+  '@types/lodash.debounce@4.0.9':
+    resolution: {integrity: sha512-Ma5JcgTREwpLRwMM+XwBR7DaWe96nC38uCBDFKZWbNKD+osjVzdpnUSwBcqCptrp16sSOLBAUb50Car5I0TCsQ==}
+
+  '@types/lodash@4.17.18':
+    resolution: {integrity: sha512-KJ65INaxqxmU6EoCiJmRPZC9H9RVWCRd349tXM2M3O5NA7cY6YL7c0bHAHQ93NOfTObEQ004kd2QVHs/r0+m4g==}
 
   '@types/mdast@4.0.4':
     resolution: {integrity: sha512-kGaNbPh1k7AFzgpud/gMdvIm5xuECykRR+JnWKQno9TAXVa6WIVCGTPvYGekIDL4uwCZQSYbUxNBSb1aUo79oA==}
@@ -3358,6 +3368,12 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
 
+  '@types/lodash.debounce@4.0.9':
+    dependencies:
+      '@types/lodash': 4.17.18
+
+  '@types/lodash@4.17.18': {}
+
   '@types/mdast@4.0.4':
     dependencies:
       '@types/unist': 3.0.3
@@ -3563,6 +3579,7 @@ snapshots:
       '@astrojs/sitemap': 3.4.0
       '@astrojs/vue': 5.1.0(@types/node@22.15.21)(astro@5.7.13(@types/node@22.15.21)(rollup@4.41.0)(typescript@5.8.3))(rollup@4.41.0)(vue@3.5.14(typescript@5.8.3))
       astro: 5.7.13(@types/node@22.15.21)(rollup@4.41.0)(typescript@5.8.3)
+      lodash.debounce: 4.0.8
       vue: 3.5.14(typescript@5.8.3)
     transitivePeerDependencies:
       - '@aws-sdk/client-rds-data'
