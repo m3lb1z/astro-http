@@ -4,17 +4,15 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "dev:remote": "astro dev --remote",
-    "build": "astro build --remote",
-    "build:remote": "astro build --remote",
+    "start": "node ./dist/server/entry.mjs",
+    "build": "npm run prisma:generate && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "db:push": "astro db push --remote"
+    "prisma:generate": "prisma generate"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.5.3",
-    "@astrojs/db": "^0.14.14",
     "@astrojs/mdx": "^4.2.6",
+    "@astrojs/node": "^9.2.2",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.4.0",
     "@astrojs/vue": "^5.1.0",
